@@ -1,0 +1,48 @@
+syntax = "proto3";
+package recovery;
+
+import "gogoproto/gogo.proto";
+import "rustproto.proto";
+
+option (gogoproto.sizer_all) = true;
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+option (rustproto.lite_runtime_all) = true;
+
+message RegionMeta {
+    uint64 region_id = 1;
+    uint64 applied_index = 2;
+    uint64 term = 3;
+    uint64 version = 4;
+    bool tombstone = 5;
+    bytes start_key = 6;
+    bytes end_key = 7;
+}
+
+message RegionRecover {
+    uint64 region_id = 1;
+    uint64 term = 2; // set term
+    bool silence = 3; // disable pre vote
+    bool tombstone = 4; // set Peer to tombstone
+}
+
+message CloseRequest {
+    bool workdone = 1;
+}
+
+message CloseReply {
+    string ok = 1;
+}
+
+message ResolvedRequest {
+    uint64 start = 1;
+}
+
+message ResolvedReply {
+    uint64 resolved_ts = 1;
+}
+service recovery {
+    rpc recover_regions(stream RegionMeta) returns (stream RegionRecover) {}
+    rpc close(CloseRequest) returns (CloseReply) {}
+    rpc resolve_data(ResolvedRequest) returns (ResolvedReply) {}
+}
