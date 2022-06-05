@@ -28,7 +28,54 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type RegionMeta struct {
+type ReadRegionMetaRequest struct {
+	Workdone             bool     `protobuf:"varint,1,opt,name=workdone,proto3" json:"workdone,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ReadRegionMetaRequest) Reset()         { *m = ReadRegionMetaRequest{} }
+func (m *ReadRegionMetaRequest) String() string { return proto.CompactTextString(m) }
+func (*ReadRegionMetaRequest) ProtoMessage()    {}
+func (*ReadRegionMetaRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f78c5bd5d2e42cce, []int{0}
+}
+func (m *ReadRegionMetaRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ReadRegionMetaRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ReadRegionMetaRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ReadRegionMetaRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadRegionMetaRequest.Merge(m, src)
+}
+func (m *ReadRegionMetaRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *ReadRegionMetaRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadRegionMetaRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReadRegionMetaRequest proto.InternalMessageInfo
+
+func (m *ReadRegionMetaRequest) GetWorkdone() bool {
+	if m != nil {
+		return m.Workdone
+	}
+	return false
+}
+
+type ReadRegionMetaResponse struct {
 	RegionId             uint64   `protobuf:"varint,1,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
 	AppliedIndex         uint64   `protobuf:"varint,2,opt,name=applied_index,json=appliedIndex,proto3" json:"applied_index,omitempty"`
 	LastIndex            uint64   `protobuf:"varint,3,opt,name=last_index,json=lastIndex,proto3" json:"last_index,omitempty"`
@@ -42,18 +89,18 @@ type RegionMeta struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RegionMeta) Reset()         { *m = RegionMeta{} }
-func (m *RegionMeta) String() string { return proto.CompactTextString(m) }
-func (*RegionMeta) ProtoMessage()    {}
-func (*RegionMeta) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f78c5bd5d2e42cce, []int{0}
+func (m *ReadRegionMetaResponse) Reset()         { *m = ReadRegionMetaResponse{} }
+func (m *ReadRegionMetaResponse) String() string { return proto.CompactTextString(m) }
+func (*ReadRegionMetaResponse) ProtoMessage()    {}
+func (*ReadRegionMetaResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f78c5bd5d2e42cce, []int{1}
 }
-func (m *RegionMeta) XXX_Unmarshal(b []byte) error {
+func (m *ReadRegionMetaResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *RegionMeta) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ReadRegionMetaResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_RegionMeta.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ReadRegionMetaResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -63,75 +110,75 @@ func (m *RegionMeta) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *RegionMeta) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RegionMeta.Merge(m, src)
+func (m *ReadRegionMetaResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReadRegionMetaResponse.Merge(m, src)
 }
-func (m *RegionMeta) XXX_Size() int {
+func (m *ReadRegionMetaResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *RegionMeta) XXX_DiscardUnknown() {
-	xxx_messageInfo_RegionMeta.DiscardUnknown(m)
+func (m *ReadRegionMetaResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReadRegionMetaResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RegionMeta proto.InternalMessageInfo
+var xxx_messageInfo_ReadRegionMetaResponse proto.InternalMessageInfo
 
-func (m *RegionMeta) GetRegionId() uint64 {
+func (m *ReadRegionMetaResponse) GetRegionId() uint64 {
 	if m != nil {
 		return m.RegionId
 	}
 	return 0
 }
 
-func (m *RegionMeta) GetAppliedIndex() uint64 {
+func (m *ReadRegionMetaResponse) GetAppliedIndex() uint64 {
 	if m != nil {
 		return m.AppliedIndex
 	}
 	return 0
 }
 
-func (m *RegionMeta) GetLastIndex() uint64 {
+func (m *ReadRegionMetaResponse) GetLastIndex() uint64 {
 	if m != nil {
 		return m.LastIndex
 	}
 	return 0
 }
 
-func (m *RegionMeta) GetTerm() uint64 {
+func (m *ReadRegionMetaResponse) GetTerm() uint64 {
 	if m != nil {
 		return m.Term
 	}
 	return 0
 }
 
-func (m *RegionMeta) GetVersion() uint64 {
+func (m *ReadRegionMetaResponse) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
 	return 0
 }
 
-func (m *RegionMeta) GetTombstone() bool {
+func (m *ReadRegionMetaResponse) GetTombstone() bool {
 	if m != nil {
 		return m.Tombstone
 	}
 	return false
 }
 
-func (m *RegionMeta) GetStartKey() []byte {
+func (m *ReadRegionMetaResponse) GetStartKey() []byte {
 	if m != nil {
 		return m.StartKey
 	}
 	return nil
 }
 
-func (m *RegionMeta) GetEndKey() []byte {
+func (m *ReadRegionMetaResponse) GetEndKey() []byte {
 	if m != nil {
 		return m.EndKey
 	}
 	return nil
 }
 
-type RegionRecover struct {
+type RecoveryCmdRequest struct {
 	RegionId             uint64   `protobuf:"varint,1,opt,name=region_id,json=regionId,proto3" json:"region_id,omitempty"`
 	Term                 uint64   `protobuf:"varint,2,opt,name=term,proto3" json:"term,omitempty"`
 	AsLeader             bool     `protobuf:"varint,3,opt,name=as_leader,json=asLeader,proto3" json:"as_leader,omitempty"`
@@ -141,18 +188,18 @@ type RegionRecover struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RegionRecover) Reset()         { *m = RegionRecover{} }
-func (m *RegionRecover) String() string { return proto.CompactTextString(m) }
-func (*RegionRecover) ProtoMessage()    {}
-func (*RegionRecover) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f78c5bd5d2e42cce, []int{1}
+func (m *RecoveryCmdRequest) Reset()         { *m = RecoveryCmdRequest{} }
+func (m *RecoveryCmdRequest) String() string { return proto.CompactTextString(m) }
+func (*RecoveryCmdRequest) ProtoMessage()    {}
+func (*RecoveryCmdRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f78c5bd5d2e42cce, []int{2}
 }
-func (m *RegionRecover) XXX_Unmarshal(b []byte) error {
+func (m *RecoveryCmdRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *RegionRecover) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *RecoveryCmdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_RegionRecover.Marshal(b, m, deterministic)
+		return xxx_messageInfo_RecoveryCmdRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -162,65 +209,65 @@ func (m *RegionRecover) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
-func (m *RegionRecover) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RegionRecover.Merge(m, src)
+func (m *RecoveryCmdRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RecoveryCmdRequest.Merge(m, src)
 }
-func (m *RegionRecover) XXX_Size() int {
+func (m *RecoveryCmdRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *RegionRecover) XXX_DiscardUnknown() {
-	xxx_messageInfo_RegionRecover.DiscardUnknown(m)
+func (m *RecoveryCmdRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RecoveryCmdRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RegionRecover proto.InternalMessageInfo
+var xxx_messageInfo_RecoveryCmdRequest proto.InternalMessageInfo
 
-func (m *RegionRecover) GetRegionId() uint64 {
+func (m *RecoveryCmdRequest) GetRegionId() uint64 {
 	if m != nil {
 		return m.RegionId
 	}
 	return 0
 }
 
-func (m *RegionRecover) GetTerm() uint64 {
+func (m *RecoveryCmdRequest) GetTerm() uint64 {
 	if m != nil {
 		return m.Term
 	}
 	return 0
 }
 
-func (m *RegionRecover) GetAsLeader() bool {
+func (m *RecoveryCmdRequest) GetAsLeader() bool {
 	if m != nil {
 		return m.AsLeader
 	}
 	return false
 }
 
-func (m *RegionRecover) GetTombstone() bool {
+func (m *RecoveryCmdRequest) GetTombstone() bool {
 	if m != nil {
 		return m.Tombstone
 	}
 	return false
 }
 
-type CloseRequest struct {
-	Workdone             bool     `protobuf:"varint,1,opt,name=workdone,proto3" json:"workdone,omitempty"`
+type RecoveryCmdResponse struct {
+	Done                 bool     `protobuf:"varint,1,opt,name=done,proto3" json:"done,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CloseRequest) Reset()         { *m = CloseRequest{} }
-func (m *CloseRequest) String() string { return proto.CompactTextString(m) }
-func (*CloseRequest) ProtoMessage()    {}
-func (*CloseRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f78c5bd5d2e42cce, []int{2}
+func (m *RecoveryCmdResponse) Reset()         { *m = RecoveryCmdResponse{} }
+func (m *RecoveryCmdResponse) String() string { return proto.CompactTextString(m) }
+func (*RecoveryCmdResponse) ProtoMessage()    {}
+func (*RecoveryCmdResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f78c5bd5d2e42cce, []int{3}
 }
-func (m *CloseRequest) XXX_Unmarshal(b []byte) error {
+func (m *RecoveryCmdResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *CloseRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *RecoveryCmdResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_CloseRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_RecoveryCmdResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -230,44 +277,45 @@ func (m *CloseRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
-func (m *CloseRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CloseRequest.Merge(m, src)
+func (m *RecoveryCmdResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RecoveryCmdResponse.Merge(m, src)
 }
-func (m *CloseRequest) XXX_Size() int {
+func (m *RecoveryCmdResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *CloseRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CloseRequest.DiscardUnknown(m)
+func (m *RecoveryCmdResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RecoveryCmdResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CloseRequest proto.InternalMessageInfo
+var xxx_messageInfo_RecoveryCmdResponse proto.InternalMessageInfo
 
-func (m *CloseRequest) GetWorkdone() bool {
+func (m *RecoveryCmdResponse) GetDone() bool {
 	if m != nil {
-		return m.Workdone
+		return m.Done
 	}
 	return false
 }
 
-type CloseReply struct {
-	Ok                   string   `protobuf:"bytes,1,opt,name=ok,proto3" json:"ok,omitempty"`
+// check if raft fsm applied index >= GetRaftStatusRequest.commit_index
+type GetRaftStatusRequest struct {
+	CommitIndex          bool     `protobuf:"varint,1,opt,name=commit_index,json=commitIndex,proto3" json:"commit_index,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CloseReply) Reset()         { *m = CloseReply{} }
-func (m *CloseReply) String() string { return proto.CompactTextString(m) }
-func (*CloseReply) ProtoMessage()    {}
-func (*CloseReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f78c5bd5d2e42cce, []int{3}
+func (m *GetRaftStatusRequest) Reset()         { *m = GetRaftStatusRequest{} }
+func (m *GetRaftStatusRequest) String() string { return proto.CompactTextString(m) }
+func (*GetRaftStatusRequest) ProtoMessage()    {}
+func (*GetRaftStatusRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f78c5bd5d2e42cce, []int{4}
 }
-func (m *CloseReply) XXX_Unmarshal(b []byte) error {
+func (m *GetRaftStatusRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *CloseReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetRaftStatusRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_CloseReply.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetRaftStatusRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -277,27 +325,74 @@ func (m *CloseReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *CloseReply) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CloseReply.Merge(m, src)
+func (m *GetRaftStatusRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRaftStatusRequest.Merge(m, src)
 }
-func (m *CloseReply) XXX_Size() int {
+func (m *GetRaftStatusRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *CloseReply) XXX_DiscardUnknown() {
-	xxx_messageInfo_CloseReply.DiscardUnknown(m)
+func (m *GetRaftStatusRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRaftStatusRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CloseReply proto.InternalMessageInfo
+var xxx_messageInfo_GetRaftStatusRequest proto.InternalMessageInfo
 
-func (m *CloseReply) GetOk() string {
+func (m *GetRaftStatusRequest) GetCommitIndex() bool {
 	if m != nil {
-		return m.Ok
+		return m.CommitIndex
 	}
-	return ""
+	return false
+}
+
+type GetRaftStatusResponse struct {
+	Done                 bool     `protobuf:"varint,1,opt,name=done,proto3" json:"done,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetRaftStatusResponse) Reset()         { *m = GetRaftStatusResponse{} }
+func (m *GetRaftStatusResponse) String() string { return proto.CompactTextString(m) }
+func (*GetRaftStatusResponse) ProtoMessage()    {}
+func (*GetRaftStatusResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f78c5bd5d2e42cce, []int{5}
+}
+func (m *GetRaftStatusResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *GetRaftStatusResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_GetRaftStatusResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *GetRaftStatusResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRaftStatusResponse.Merge(m, src)
+}
+func (m *GetRaftStatusResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *GetRaftStatusResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRaftStatusResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetRaftStatusResponse proto.InternalMessageInfo
+
+func (m *GetRaftStatusResponse) GetDone() bool {
+	if m != nil {
+		return m.Done
+	}
+	return false
 }
 
 type ResolvedRequest struct {
-	Start                uint64   `protobuf:"varint,1,opt,name=start,proto3" json:"start,omitempty"`
+	ResolvedTs           uint64   `protobuf:"varint,1,opt,name=resolved_ts,json=resolvedTs,proto3" json:"resolved_ts,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -307,7 +402,7 @@ func (m *ResolvedRequest) Reset()         { *m = ResolvedRequest{} }
 func (m *ResolvedRequest) String() string { return proto.CompactTextString(m) }
 func (*ResolvedRequest) ProtoMessage()    {}
 func (*ResolvedRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f78c5bd5d2e42cce, []int{4}
+	return fileDescriptor_f78c5bd5d2e42cce, []int{6}
 }
 func (m *ResolvedRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -336,32 +431,32 @@ func (m *ResolvedRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ResolvedRequest proto.InternalMessageInfo
 
-func (m *ResolvedRequest) GetStart() uint64 {
+func (m *ResolvedRequest) GetResolvedTs() uint64 {
 	if m != nil {
-		return m.Start
+		return m.ResolvedTs
 	}
 	return 0
 }
 
-type ResolvedReply struct {
-	ResolvedTs           uint64   `protobuf:"varint,1,opt,name=resolved_ts,json=resolvedTs,proto3" json:"resolved_ts,omitempty"`
+type ResolvedResponse struct {
+	Done                 bool     `protobuf:"varint,1,opt,name=done,proto3" json:"done,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ResolvedReply) Reset()         { *m = ResolvedReply{} }
-func (m *ResolvedReply) String() string { return proto.CompactTextString(m) }
-func (*ResolvedReply) ProtoMessage()    {}
-func (*ResolvedReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f78c5bd5d2e42cce, []int{5}
+func (m *ResolvedResponse) Reset()         { *m = ResolvedResponse{} }
+func (m *ResolvedResponse) String() string { return proto.CompactTextString(m) }
+func (*ResolvedResponse) ProtoMessage()    {}
+func (*ResolvedResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f78c5bd5d2e42cce, []int{7}
 }
-func (m *ResolvedReply) XXX_Unmarshal(b []byte) error {
+func (m *ResolvedResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *ResolvedReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ResolvedResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_ResolvedReply.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ResolvedResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -371,68 +466,73 @@ func (m *ResolvedReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
-func (m *ResolvedReply) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResolvedReply.Merge(m, src)
+func (m *ResolvedResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ResolvedResponse.Merge(m, src)
 }
-func (m *ResolvedReply) XXX_Size() int {
+func (m *ResolvedResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *ResolvedReply) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResolvedReply.DiscardUnknown(m)
+func (m *ResolvedResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ResolvedResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ResolvedReply proto.InternalMessageInfo
+var xxx_messageInfo_ResolvedResponse proto.InternalMessageInfo
 
-func (m *ResolvedReply) GetResolvedTs() uint64 {
+func (m *ResolvedResponse) GetDone() bool {
 	if m != nil {
-		return m.ResolvedTs
+		return m.Done
 	}
-	return 0
+	return false
 }
 
 func init() {
-	proto.RegisterType((*RegionMeta)(nil), "recovery.RegionMeta")
-	proto.RegisterType((*RegionRecover)(nil), "recovery.RegionRecover")
-	proto.RegisterType((*CloseRequest)(nil), "recovery.CloseRequest")
-	proto.RegisterType((*CloseReply)(nil), "recovery.CloseReply")
+	proto.RegisterType((*ReadRegionMetaRequest)(nil), "recovery.ReadRegionMetaRequest")
+	proto.RegisterType((*ReadRegionMetaResponse)(nil), "recovery.ReadRegionMetaResponse")
+	proto.RegisterType((*RecoveryCmdRequest)(nil), "recovery.RecoveryCmdRequest")
+	proto.RegisterType((*RecoveryCmdResponse)(nil), "recovery.RecoveryCmdResponse")
+	proto.RegisterType((*GetRaftStatusRequest)(nil), "recovery.GetRaftStatusRequest")
+	proto.RegisterType((*GetRaftStatusResponse)(nil), "recovery.GetRaftStatusResponse")
 	proto.RegisterType((*ResolvedRequest)(nil), "recovery.ResolvedRequest")
-	proto.RegisterType((*ResolvedReply)(nil), "recovery.ResolvedReply")
+	proto.RegisterType((*ResolvedResponse)(nil), "recovery.ResolvedResponse")
 }
 
 func init() { proto.RegisterFile("recoverypb.proto", fileDescriptor_f78c5bd5d2e42cce) }
 
 var fileDescriptor_f78c5bd5d2e42cce = []byte{
-	// 466 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x93, 0xcf, 0x8e, 0xd3, 0x30,
-	0x10, 0xc6, 0xeb, 0xd2, 0x3f, 0xc9, 0xd0, 0xa5, 0xc8, 0x8a, 0xd8, 0x90, 0x5d, 0x4a, 0x15, 0x0e,
-	0x54, 0x1c, 0xca, 0x0a, 0x0e, 0xdc, 0x01, 0x21, 0xad, 0x16, 0x2e, 0x16, 0xf7, 0xc8, 0x5d, 0x8f,
-	0xaa, 0xa8, 0xd9, 0x38, 0xd8, 0xde, 0x42, 0xc4, 0x8b, 0xf0, 0x08, 0x3c, 0x0a, 0x47, 0xb8, 0x71,
-	0x44, 0xe5, 0x01, 0x78, 0x05, 0x14, 0xdb, 0xa1, 0x7f, 0x90, 0xf6, 0x36, 0xf3, 0x9b, 0x4f, 0x93,
-	0xef, 0x1b, 0x39, 0x70, 0x57, 0xe1, 0xa5, 0x5c, 0xa3, 0xaa, 0xab, 0xc5, 0xbc, 0x52, 0xd2, 0x48,
-	0x1a, 0xb4, 0x24, 0x89, 0x96, 0x72, 0x29, 0x2d, 0x7c, 0xda, 0x54, 0x6e, 0x9e, 0x8c, 0xd5, 0xb5,
-	0x36, 0xb6, 0x74, 0x20, 0xfd, 0x43, 0x00, 0x18, 0x2e, 0x73, 0x59, 0xbe, 0x43, 0xc3, 0xe9, 0x09,
-	0x84, 0xca, 0x76, 0x59, 0x2e, 0x62, 0x32, 0x25, 0xb3, 0x1e, 0x0b, 0x1c, 0x38, 0x17, 0xf4, 0x11,
-	0x1c, 0xf1, 0xaa, 0x2a, 0x72, 0x14, 0x59, 0x5e, 0x0a, 0xfc, 0x14, 0x77, 0xad, 0x60, 0xe4, 0xe1,
-	0x79, 0xc3, 0xe8, 0x03, 0x80, 0x82, 0x6b, 0xe3, 0x15, 0xb7, 0xac, 0x22, 0x6c, 0x88, 0x1b, 0x53,
-	0xe8, 0x19, 0x54, 0x57, 0x71, 0xcf, 0x0e, 0x6c, 0x4d, 0x63, 0x18, 0xae, 0x51, 0xe9, 0x5c, 0x96,
-	0x71, 0xdf, 0xe2, 0xb6, 0xa5, 0xa7, 0x10, 0x1a, 0x79, 0xb5, 0xd0, 0x46, 0x96, 0x18, 0x0f, 0xa6,
-	0x64, 0x16, 0xb0, 0x2d, 0x68, 0xcc, 0x6a, 0xc3, 0x95, 0xc9, 0x56, 0x58, 0xc7, 0xc3, 0x29, 0x99,
-	0x8d, 0x58, 0x60, 0xc1, 0x05, 0xd6, 0xf4, 0x18, 0x86, 0x58, 0x0a, 0x3b, 0x0a, 0xec, 0x68, 0x80,
-	0xa5, 0xb8, 0xc0, 0x3a, 0xfd, 0x0c, 0x47, 0x2e, 0x30, 0x73, 0xa7, 0xba, 0x39, 0x73, 0xeb, 0xb7,
-	0xbb, 0xe3, 0xf7, 0x04, 0x42, 0xae, 0xb3, 0x02, 0xb9, 0x40, 0x65, 0x13, 0x06, 0x2c, 0xe0, 0xfa,
-	0xad, 0xed, 0xf7, 0x2d, 0xf7, 0x0e, 0x2c, 0xa7, 0x4f, 0x60, 0xf4, 0xaa, 0x90, 0x1a, 0x19, 0x7e,
-	0xb8, 0x46, 0x6d, 0x68, 0x02, 0xc1, 0x47, 0xa9, 0x56, 0xa2, 0x11, 0x13, 0xb7, 0xa9, 0xed, 0xd3,
-	0x53, 0x00, 0xaf, 0xad, 0x8a, 0x9a, 0xde, 0x81, 0xae, 0x5c, 0x59, 0x4d, 0xc8, 0xba, 0x72, 0x95,
-	0x3e, 0x86, 0x31, 0x43, 0x2d, 0x8b, 0x35, 0x8a, 0x76, 0x59, 0x04, 0x7d, 0x1b, 0xdf, 0x87, 0x70,
-	0x4d, 0x7a, 0xd6, 0xe4, 0x6d, 0x85, 0xcd, 0xa6, 0x87, 0x70, 0x5b, 0x79, 0x90, 0x19, 0xed, 0xc5,
-	0xd0, 0xa2, 0xf7, 0xfa, 0xd9, 0x0f, 0x02, 0xff, 0xde, 0x11, 0x7d, 0x03, 0x63, 0x5f, 0x67, 0xee,
-	0x28, 0x9a, 0x46, 0xf3, 0x76, 0x3a, 0xdf, 0x3e, 0x9d, 0xe4, 0xf8, 0x90, 0xfa, 0xfb, 0xa6, 0x9d,
-	0x19, 0x39, 0x23, 0xf4, 0x05, 0xf4, 0x2f, 0x9b, 0x34, 0xf4, 0xde, 0x56, 0xb7, 0x7b, 0x8a, 0x24,
-	0xfa, 0x8f, 0x57, 0x45, 0x9d, 0x76, 0xe8, 0x6b, 0x18, 0x79, 0x6f, 0x99, 0xe0, 0x86, 0xd3, 0xfb,
-	0xbb, 0xdf, 0xd9, 0x3b, 0xc0, 0xbe, 0x85, 0x9d, 0xc8, 0x69, 0xe7, 0x65, 0xf4, 0xf3, 0x6b, 0x40,
-	0xbe, 0x6d, 0x26, 0xe4, 0xfb, 0x66, 0x42, 0x7e, 0x6d, 0x26, 0xe4, 0xcb, 0xef, 0x49, 0x67, 0x31,
-	0xb0, 0x3f, 0xc1, 0xf3, 0xbf, 0x01, 0x00, 0x00, 0xff, 0xff, 0xb5, 0x4d, 0x8e, 0x1f, 0x49, 0x03,
-	0x00, 0x00,
+	// 522 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x54, 0x4d, 0x8f, 0x12, 0x41,
+	0x10, 0xdd, 0x5e, 0x11, 0x86, 0x02, 0x65, 0xd3, 0xb2, 0x3a, 0xce, 0xee, 0x02, 0x8e, 0x89, 0xc1,
+	0x98, 0xa0, 0xd9, 0x3d, 0x79, 0x75, 0x4d, 0x0c, 0x41, 0x3d, 0xb4, 0x9b, 0x78, 0x24, 0x0d, 0x5d,
+	0xe2, 0x04, 0x98, 0xc6, 0xee, 0x06, 0xe5, 0xe6, 0xcf, 0xf0, 0x27, 0xf8, 0x53, 0x3c, 0x7a, 0xf0,
+	0xe0, 0xd1, 0xe0, 0xcf, 0xf0, 0x62, 0xa6, 0x67, 0x9a, 0xaf, 0xc0, 0xde, 0xba, 0xdf, 0xab, 0x57,
+	0xf3, 0xea, 0x55, 0x67, 0xe0, 0x48, 0x61, 0x5f, 0xce, 0x50, 0xcd, 0x27, 0xbd, 0xd6, 0x44, 0x49,
+	0x23, 0xa9, 0xe7, 0x90, 0xa0, 0x3a, 0x90, 0x03, 0x69, 0xc1, 0xa7, 0xc9, 0x29, 0xe5, 0x83, 0x8a,
+	0x9a, 0x6a, 0x63, 0x8f, 0x29, 0x10, 0x5e, 0xc0, 0x31, 0x43, 0x2e, 0x18, 0x0e, 0x22, 0x19, 0xbf,
+	0x41, 0xc3, 0x19, 0x7e, 0x9a, 0xa2, 0x36, 0x34, 0x00, 0xef, 0xb3, 0x54, 0x43, 0x21, 0x63, 0xf4,
+	0x49, 0x83, 0x34, 0x3d, 0xb6, 0xbc, 0x87, 0xff, 0x08, 0xdc, 0xdd, 0x56, 0xe9, 0x89, 0x8c, 0x35,
+	0xd2, 0x13, 0x28, 0x2a, 0x8b, 0x76, 0x23, 0x61, 0x75, 0x39, 0xe6, 0xa5, 0x40, 0x5b, 0xd0, 0x87,
+	0x70, 0x8b, 0x4f, 0x26, 0xa3, 0x08, 0x45, 0x37, 0x8a, 0x05, 0x7e, 0xf1, 0x0f, 0x6d, 0x41, 0x39,
+	0x03, 0xdb, 0x09, 0x46, 0xcf, 0x00, 0x46, 0x5c, 0x9b, 0xac, 0xe2, 0x86, 0xad, 0x28, 0x26, 0x48,
+	0x4a, 0x53, 0xc8, 0x19, 0x54, 0x63, 0x3f, 0x67, 0x09, 0x7b, 0xa6, 0x3e, 0x14, 0x66, 0xa8, 0x74,
+	0x24, 0x63, 0xff, 0xa6, 0x85, 0xdd, 0x95, 0x9e, 0x42, 0xd1, 0xc8, 0x71, 0x4f, 0x9b, 0x64, 0x8c,
+	0xbc, 0x1d, 0x63, 0x05, 0x24, 0x66, 0xb5, 0xe1, 0xca, 0x74, 0x87, 0x38, 0xf7, 0x0b, 0x0d, 0xd2,
+	0x2c, 0x33, 0xcf, 0x02, 0x1d, 0x9c, 0xd3, 0x7b, 0x50, 0xc0, 0x58, 0x58, 0xca, 0xb3, 0x54, 0x1e,
+	0x63, 0xd1, 0xc1, 0x79, 0xf8, 0x95, 0x00, 0x65, 0x59, 0xcc, 0x97, 0x63, 0xe1, 0x02, 0xbb, 0x76,
+	0x72, 0xe7, 0xfa, 0x70, 0xcd, 0xf5, 0x09, 0x14, 0xb9, 0xee, 0x8e, 0x90, 0x0b, 0x54, 0x76, 0x4e,
+	0x8f, 0x79, 0x5c, 0xbf, 0xb6, 0xf7, 0x4d, 0xe3, 0xb9, 0x2d, 0xe3, 0xe1, 0x63, 0xb8, 0xb3, 0xe1,
+	0x20, 0x0b, 0x9f, 0x42, 0x6e, 0x6d, 0x5f, 0xf6, 0x1c, 0x3e, 0x87, 0xea, 0x2b, 0x34, 0x8c, 0x7f,
+	0x30, 0xef, 0x0c, 0x37, 0x53, 0xed, 0xec, 0x3e, 0x80, 0x72, 0x5f, 0x8e, 0xc7, 0x91, 0x0b, 0x3a,
+	0xd5, 0x94, 0x52, 0xcc, 0x46, 0x1d, 0x3e, 0x81, 0xe3, 0x2d, 0xe9, 0x35, 0xdf, 0x39, 0x87, 0x0a,
+	0x43, 0x2d, 0x47, 0x33, 0x5c, 0x26, 0x52, 0x87, 0x92, 0xca, 0xa0, 0xae, 0xd1, 0x59, 0x26, 0xe0,
+	0xa0, 0x2b, 0x1d, 0x3e, 0x82, 0xa3, 0x95, 0x66, 0x7f, 0xef, 0xf3, 0x5f, 0x87, 0xb0, 0x7c, 0xd8,
+	0xf4, 0x3d, 0xdc, 0xde, 0x7c, 0x7b, 0xb4, 0xde, 0x72, 0x64, 0x6b, 0xe7, 0x5b, 0x0e, 0x1a, 0xfb,
+	0x0b, 0xd2, 0xaf, 0x86, 0x07, 0xcf, 0x08, 0x7d, 0x0b, 0xa5, 0xb5, 0x50, 0xe9, 0xe9, 0xba, 0x68,
+	0x7b, 0xdb, 0xc1, 0xd9, 0x1e, 0xd6, 0xf5, 0x6b, 0x12, 0x7a, 0x05, 0x95, 0xcb, 0x8f, 0xd8, 0x1f,
+	0xae, 0x02, 0xa4, 0xb5, 0x95, 0x6a, 0xd7, 0x52, 0x82, 0xfa, 0x5e, 0xde, 0xf5, 0xa5, 0xed, 0x64,
+	0xfc, 0x34, 0xb3, 0xce, 0xec, 0x25, 0x37, 0x9c, 0xde, 0x5f, 0xb7, 0xb2, 0xb1, 0x81, 0x20, 0xd8,
+	0x45, 0xb9, 0x56, 0x2f, 0xaa, 0xbf, 0xbf, 0x7b, 0xe4, 0xc7, 0xa2, 0x46, 0x7e, 0x2e, 0x6a, 0xe4,
+	0xcf, 0xa2, 0x46, 0xbe, 0xfd, 0xad, 0x1d, 0xf4, 0xf2, 0xf6, 0xc7, 0x70, 0xf1, 0x3f, 0x00, 0x00,
+	0xff, 0xff, 0x8a, 0x8b, 0xe1, 0x91, 0x5d, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -447,9 +547,11 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type RecoveryClient interface {
-	RecoverRegions(ctx context.Context, opts ...grpc.CallOption) (Recovery_RecoverRegionsClient, error)
-	Close(ctx context.Context, in *CloseRequest, opts ...grpc.CallOption) (*CloseReply, error)
-	ResolveData(ctx context.Context, in *ResolvedRequest, opts ...grpc.CallOption) (*ResolvedReply, error)
+	// scan region meta
+	ReadRegionMeta(ctx context.Context, in *ReadRegionMetaRequest, opts ...grpc.CallOption) (Recovery_ReadRegionMetaClient, error)
+	RecoveryCmd(ctx context.Context, opts ...grpc.CallOption) (Recovery_RecoveryCmdClient, error)
+	CheckRaftStatus(ctx context.Context, in *GetRaftStatusRequest, opts ...grpc.CallOption) (*GetRaftStatusResponse, error)
+	ResolvedKvData(ctx context.Context, in *ResolvedRequest, opts ...grpc.CallOption) (*ResolvedResponse, error)
 }
 
 type recoveryClient struct {
@@ -460,49 +562,84 @@ func NewRecoveryClient(cc *grpc.ClientConn) RecoveryClient {
 	return &recoveryClient{cc}
 }
 
-func (c *recoveryClient) RecoverRegions(ctx context.Context, opts ...grpc.CallOption) (Recovery_RecoverRegionsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Recovery_serviceDesc.Streams[0], "/recovery.recovery/recover_regions", opts...)
+func (c *recoveryClient) ReadRegionMeta(ctx context.Context, in *ReadRegionMetaRequest, opts ...grpc.CallOption) (Recovery_ReadRegionMetaClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Recovery_serviceDesc.Streams[0], "/recovery.recovery/ReadRegionMeta", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &recoveryRecoverRegionsClient{stream}
+	x := &recoveryReadRegionMetaClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
 	return x, nil
 }
 
-type Recovery_RecoverRegionsClient interface {
-	Send(*RegionMeta) error
-	Recv() (*RegionRecover, error)
+type Recovery_ReadRegionMetaClient interface {
+	Recv() (*ReadRegionMetaResponse, error)
 	grpc.ClientStream
 }
 
-type recoveryRecoverRegionsClient struct {
+type recoveryReadRegionMetaClient struct {
 	grpc.ClientStream
 }
 
-func (x *recoveryRecoverRegionsClient) Send(m *RegionMeta) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *recoveryRecoverRegionsClient) Recv() (*RegionRecover, error) {
-	m := new(RegionRecover)
+func (x *recoveryReadRegionMetaClient) Recv() (*ReadRegionMetaResponse, error) {
+	m := new(ReadRegionMetaResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *recoveryClient) Close(ctx context.Context, in *CloseRequest, opts ...grpc.CallOption) (*CloseReply, error) {
-	out := new(CloseReply)
-	err := c.cc.Invoke(ctx, "/recovery.recovery/close", in, out, opts...)
+func (c *recoveryClient) RecoveryCmd(ctx context.Context, opts ...grpc.CallOption) (Recovery_RecoveryCmdClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Recovery_serviceDesc.Streams[1], "/recovery.recovery/RecoveryCmd", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &recoveryRecoveryCmdClient{stream}
+	return x, nil
+}
+
+type Recovery_RecoveryCmdClient interface {
+	Send(*RecoveryCmdRequest) error
+	CloseAndRecv() (*RecoveryCmdResponse, error)
+	grpc.ClientStream
+}
+
+type recoveryRecoveryCmdClient struct {
+	grpc.ClientStream
+}
+
+func (x *recoveryRecoveryCmdClient) Send(m *RecoveryCmdRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *recoveryRecoveryCmdClient) CloseAndRecv() (*RecoveryCmdResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(RecoveryCmdResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *recoveryClient) CheckRaftStatus(ctx context.Context, in *GetRaftStatusRequest, opts ...grpc.CallOption) (*GetRaftStatusResponse, error) {
+	out := new(GetRaftStatusResponse)
+	err := c.cc.Invoke(ctx, "/recovery.recovery/CheckRaftStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *recoveryClient) ResolveData(ctx context.Context, in *ResolvedRequest, opts ...grpc.CallOption) (*ResolvedReply, error) {
-	out := new(ResolvedReply)
-	err := c.cc.Invoke(ctx, "/recovery.recovery/resolve_data", in, out, opts...)
+func (c *recoveryClient) ResolvedKvData(ctx context.Context, in *ResolvedRequest, opts ...grpc.CallOption) (*ResolvedResponse, error) {
+	out := new(ResolvedResponse)
+	err := c.cc.Invoke(ctx, "/recovery.recovery/ResolvedKvData", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -511,87 +648,113 @@ func (c *recoveryClient) ResolveData(ctx context.Context, in *ResolvedRequest, o
 
 // RecoveryServer is the server API for Recovery service.
 type RecoveryServer interface {
-	RecoverRegions(Recovery_RecoverRegionsServer) error
-	Close(context.Context, *CloseRequest) (*CloseReply, error)
-	ResolveData(context.Context, *ResolvedRequest) (*ResolvedReply, error)
+	// scan region meta
+	ReadRegionMeta(*ReadRegionMetaRequest, Recovery_ReadRegionMetaServer) error
+	RecoveryCmd(Recovery_RecoveryCmdServer) error
+	CheckRaftStatus(context.Context, *GetRaftStatusRequest) (*GetRaftStatusResponse, error)
+	ResolvedKvData(context.Context, *ResolvedRequest) (*ResolvedResponse, error)
 }
 
 // UnimplementedRecoveryServer can be embedded to have forward compatible implementations.
 type UnimplementedRecoveryServer struct {
 }
 
-func (*UnimplementedRecoveryServer) RecoverRegions(srv Recovery_RecoverRegionsServer) error {
-	return status.Errorf(codes.Unimplemented, "method RecoverRegions not implemented")
+func (*UnimplementedRecoveryServer) ReadRegionMeta(req *ReadRegionMetaRequest, srv Recovery_ReadRegionMetaServer) error {
+	return status.Errorf(codes.Unimplemented, "method ReadRegionMeta not implemented")
 }
-func (*UnimplementedRecoveryServer) Close(ctx context.Context, req *CloseRequest) (*CloseReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Close not implemented")
+func (*UnimplementedRecoveryServer) RecoveryCmd(srv Recovery_RecoveryCmdServer) error {
+	return status.Errorf(codes.Unimplemented, "method RecoveryCmd not implemented")
 }
-func (*UnimplementedRecoveryServer) ResolveData(ctx context.Context, req *ResolvedRequest) (*ResolvedReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ResolveData not implemented")
+func (*UnimplementedRecoveryServer) CheckRaftStatus(ctx context.Context, req *GetRaftStatusRequest) (*GetRaftStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckRaftStatus not implemented")
+}
+func (*UnimplementedRecoveryServer) ResolvedKvData(ctx context.Context, req *ResolvedRequest) (*ResolvedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResolvedKvData not implemented")
 }
 
 func RegisterRecoveryServer(s *grpc.Server, srv RecoveryServer) {
 	s.RegisterService(&_Recovery_serviceDesc, srv)
 }
 
-func _Recovery_RecoverRegions_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(RecoveryServer).RecoverRegions(&recoveryRecoverRegionsServer{stream})
+func _Recovery_ReadRegionMeta_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ReadRegionMetaRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(RecoveryServer).ReadRegionMeta(m, &recoveryReadRegionMetaServer{stream})
 }
 
-type Recovery_RecoverRegionsServer interface {
-	Send(*RegionRecover) error
-	Recv() (*RegionMeta, error)
+type Recovery_ReadRegionMetaServer interface {
+	Send(*ReadRegionMetaResponse) error
 	grpc.ServerStream
 }
 
-type recoveryRecoverRegionsServer struct {
+type recoveryReadRegionMetaServer struct {
 	grpc.ServerStream
 }
 
-func (x *recoveryRecoverRegionsServer) Send(m *RegionRecover) error {
+func (x *recoveryReadRegionMetaServer) Send(m *ReadRegionMetaResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *recoveryRecoverRegionsServer) Recv() (*RegionMeta, error) {
-	m := new(RegionMeta)
+func _Recovery_RecoveryCmd_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RecoveryServer).RecoveryCmd(&recoveryRecoveryCmdServer{stream})
+}
+
+type Recovery_RecoveryCmdServer interface {
+	SendAndClose(*RecoveryCmdResponse) error
+	Recv() (*RecoveryCmdRequest, error)
+	grpc.ServerStream
+}
+
+type recoveryRecoveryCmdServer struct {
+	grpc.ServerStream
+}
+
+func (x *recoveryRecoveryCmdServer) SendAndClose(m *RecoveryCmdResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *recoveryRecoveryCmdServer) Recv() (*RecoveryCmdRequest, error) {
+	m := new(RecoveryCmdRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func _Recovery_Close_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloseRequest)
+func _Recovery_CheckRaftStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRaftStatusRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RecoveryServer).Close(ctx, in)
+		return srv.(RecoveryServer).CheckRaftStatus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/recovery.recovery/Close",
+		FullMethod: "/recovery.recovery/CheckRaftStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RecoveryServer).Close(ctx, req.(*CloseRequest))
+		return srv.(RecoveryServer).CheckRaftStatus(ctx, req.(*GetRaftStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Recovery_ResolveData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Recovery_ResolvedKvData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ResolvedRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RecoveryServer).ResolveData(ctx, in)
+		return srv.(RecoveryServer).ResolvedKvData(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/recovery.recovery/ResolveData",
+		FullMethod: "/recovery.recovery/ResolvedKvData",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RecoveryServer).ResolveData(ctx, req.(*ResolvedRequest))
+		return srv.(RecoveryServer).ResolvedKvData(ctx, req.(*ResolvedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -601,26 +764,30 @@ var _Recovery_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*RecoveryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "close",
-			Handler:    _Recovery_Close_Handler,
+			MethodName: "CheckRaftStatus",
+			Handler:    _Recovery_CheckRaftStatus_Handler,
 		},
 		{
-			MethodName: "resolve_data",
-			Handler:    _Recovery_ResolveData_Handler,
+			MethodName: "ResolvedKvData",
+			Handler:    _Recovery_ResolvedKvData_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "recover_regions",
-			Handler:       _Recovery_RecoverRegions_Handler,
+			StreamName:    "ReadRegionMeta",
+			Handler:       _Recovery_ReadRegionMeta_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "RecoveryCmd",
+			Handler:       _Recovery_RecoveryCmd_Handler,
 			ClientStreams: true,
 		},
 	},
 	Metadata: "recoverypb.proto",
 }
 
-func (m *RegionMeta) Marshal() (dAtA []byte, err error) {
+func (m *ReadRegionMetaRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -630,12 +797,49 @@ func (m *RegionMeta) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *RegionMeta) MarshalTo(dAtA []byte) (int, error) {
+func (m *ReadRegionMetaRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *RegionMeta) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ReadRegionMetaRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.Workdone {
+		i--
+		if m.Workdone {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *ReadRegionMetaResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ReadRegionMetaResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ReadRegionMetaResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -696,7 +900,7 @@ func (m *RegionMeta) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *RegionRecover) Marshal() (dAtA []byte, err error) {
+func (m *RecoveryCmdRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -706,12 +910,12 @@ func (m *RegionRecover) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *RegionRecover) MarshalTo(dAtA []byte) (int, error) {
+func (m *RecoveryCmdRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *RegionRecover) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *RecoveryCmdRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -753,7 +957,7 @@ func (m *RegionRecover) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *CloseRequest) Marshal() (dAtA []byte, err error) {
+func (m *RecoveryCmdResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -763,12 +967,12 @@ func (m *CloseRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CloseRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *RecoveryCmdResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *CloseRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *RecoveryCmdResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -777,9 +981,9 @@ func (m *CloseRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.Workdone {
+	if m.Done {
 		i--
-		if m.Workdone {
+		if m.Done {
 			dAtA[i] = 1
 		} else {
 			dAtA[i] = 0
@@ -790,7 +994,7 @@ func (m *CloseRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *CloseReply) Marshal() (dAtA []byte, err error) {
+func (m *GetRaftStatusRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -800,12 +1004,12 @@ func (m *CloseReply) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CloseReply) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetRaftStatusRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *CloseReply) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetRaftStatusRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -814,12 +1018,52 @@ func (m *CloseReply) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if len(m.Ok) > 0 {
-		i -= len(m.Ok)
-		copy(dAtA[i:], m.Ok)
-		i = encodeVarintRecoverypb(dAtA, i, uint64(len(m.Ok)))
+	if m.CommitIndex {
 		i--
-		dAtA[i] = 0xa
+		if m.CommitIndex {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetRaftStatusResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetRaftStatusResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetRaftStatusResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.Done {
+		i--
+		if m.Done {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -848,15 +1092,15 @@ func (m *ResolvedRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.Start != 0 {
-		i = encodeVarintRecoverypb(dAtA, i, uint64(m.Start))
+	if m.ResolvedTs != 0 {
+		i = encodeVarintRecoverypb(dAtA, i, uint64(m.ResolvedTs))
 		i--
 		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *ResolvedReply) Marshal() (dAtA []byte, err error) {
+func (m *ResolvedResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -866,12 +1110,12 @@ func (m *ResolvedReply) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *ResolvedReply) MarshalTo(dAtA []byte) (int, error) {
+func (m *ResolvedResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *ResolvedReply) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ResolvedResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -880,8 +1124,13 @@ func (m *ResolvedReply) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i -= len(m.XXX_unrecognized)
 		copy(dAtA[i:], m.XXX_unrecognized)
 	}
-	if m.ResolvedTs != 0 {
-		i = encodeVarintRecoverypb(dAtA, i, uint64(m.ResolvedTs))
+	if m.Done {
+		i--
+		if m.Done {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
 		i--
 		dAtA[i] = 0x8
 	}
@@ -899,7 +1148,22 @@ func encodeVarintRecoverypb(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *RegionMeta) Size() (n int) {
+func (m *ReadRegionMetaRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Workdone {
+		n += 2
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *ReadRegionMetaResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -937,7 +1201,7 @@ func (m *RegionMeta) Size() (n int) {
 	return n
 }
 
-func (m *RegionRecover) Size() (n int) {
+func (m *RecoveryCmdRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -961,13 +1225,13 @@ func (m *RegionRecover) Size() (n int) {
 	return n
 }
 
-func (m *CloseRequest) Size() (n int) {
+func (m *RecoveryCmdResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Workdone {
+	if m.Done {
 		n += 2
 	}
 	if m.XXX_unrecognized != nil {
@@ -976,15 +1240,29 @@ func (m *CloseRequest) Size() (n int) {
 	return n
 }
 
-func (m *CloseReply) Size() (n int) {
+func (m *GetRaftStatusRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Ok)
-	if l > 0 {
-		n += 1 + l + sovRecoverypb(uint64(l))
+	if m.CommitIndex {
+		n += 2
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetRaftStatusResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Done {
+		n += 2
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -993,21 +1271,6 @@ func (m *CloseReply) Size() (n int) {
 }
 
 func (m *ResolvedRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Start != 0 {
-		n += 1 + sovRecoverypb(uint64(m.Start))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *ResolvedReply) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1022,13 +1285,28 @@ func (m *ResolvedReply) Size() (n int) {
 	return n
 }
 
+func (m *ResolvedResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Done {
+		n += 2
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
 func sovRecoverypb(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
 func sozRecoverypb(x uint64) (n int) {
 	return sovRecoverypb(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *RegionMeta) Unmarshal(dAtA []byte) error {
+func (m *ReadRegionMetaRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1051,10 +1329,81 @@ func (m *RegionMeta) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: RegionMeta: wiretype end group for non-group")
+			return fmt.Errorf("proto: ReadRegionMetaRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RegionMeta: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ReadRegionMetaRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Workdone", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRecoverypb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Workdone = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipRecoverypb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthRecoverypb
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ReadRegionMetaResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowRecoverypb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ReadRegionMetaResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ReadRegionMetaResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1262,7 +1611,7 @@ func (m *RegionMeta) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *RegionRecover) Unmarshal(dAtA []byte) error {
+func (m *RecoveryCmdRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1285,10 +1634,10 @@ func (m *RegionRecover) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: RegionRecover: wiretype end group for non-group")
+			return fmt.Errorf("proto: RecoveryCmdRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RegionRecover: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: RecoveryCmdRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1391,7 +1740,7 @@ func (m *RegionRecover) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *CloseRequest) Unmarshal(dAtA []byte) error {
+func (m *RecoveryCmdResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1414,15 +1763,15 @@ func (m *CloseRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: CloseRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: RecoveryCmdResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CloseRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: RecoveryCmdResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Workdone", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Done", wireType)
 			}
 			var v int
 			for shift := uint(0); ; shift += 7 {
@@ -1439,7 +1788,7 @@ func (m *CloseRequest) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-			m.Workdone = bool(v != 0)
+			m.Done = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipRecoverypb(dAtA[iNdEx:])
@@ -1462,7 +1811,7 @@ func (m *CloseRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *CloseReply) Unmarshal(dAtA []byte) error {
+func (m *GetRaftStatusRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1485,17 +1834,17 @@ func (m *CloseReply) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: CloseReply: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetRaftStatusRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CloseReply: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetRaftStatusRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Ok", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CommitIndex", wireType)
 			}
-			var stringLen uint64
+			var v int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowRecoverypb
@@ -1505,24 +1854,83 @@ func (m *CloseReply) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				v |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
+			m.CommitIndex = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipRecoverypb(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthRecoverypb
 			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRecoverypb
-			}
-			if postIndex > l {
+			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Ok = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetRaftStatusResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowRecoverypb
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetRaftStatusResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetRaftStatusResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Done", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowRecoverypb
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Done = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipRecoverypb(dAtA[iNdEx:])
@@ -1576,9 +1984,9 @@ func (m *ResolvedRequest) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Start", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ResolvedTs", wireType)
 			}
-			m.Start = 0
+			m.ResolvedTs = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowRecoverypb
@@ -1588,7 +1996,7 @@ func (m *ResolvedRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Start |= uint64(b&0x7F) << shift
+				m.ResolvedTs |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1615,7 +2023,7 @@ func (m *ResolvedRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *ResolvedReply) Unmarshal(dAtA []byte) error {
+func (m *ResolvedResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1638,17 +2046,17 @@ func (m *ResolvedReply) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: ResolvedReply: wiretype end group for non-group")
+			return fmt.Errorf("proto: ResolvedResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ResolvedReply: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ResolvedResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ResolvedTs", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Done", wireType)
 			}
-			m.ResolvedTs = 0
+			var v int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowRecoverypb
@@ -1658,11 +2066,12 @@ func (m *ResolvedReply) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.ResolvedTs |= uint64(b&0x7F) << shift
+				v |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			m.Done = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipRecoverypb(dAtA[iNdEx:])

@@ -56,5 +56,5 @@ service recovery {
     rpc ReadRegionMeta(ReadRegionMetaRequest) returns (stream ReadRegionMetaResponse) {}
     rpc RecoveryCmd(stream RecoveryCmdRequest) returns (RecoveryCmdResponse) {}
     rpc CheckRaftStatus(GetRaftStatusRequest) returns (GetRaftStatusResponse) {}
-    rpc ResolvedKvData(ResolvedRequest) returns (ResolvedReply) {}
+    rpc ResolvedKvData(ResolvedRequest) returns (ResolvedResponse) {}
 }
