@@ -10,18 +10,19 @@ option (gogoproto.unmarshaler_all) = true;
 option (rustproto.lite_runtime_all) = true;
 
 message ReadRegionMetaRequest {
-    bool workdone = 1;
+    uint64 store_id = 1;
 }
 
 message ReadRegionMetaResponse {
     uint64 region_id = 1;
     uint64 applied_index = 2;
     uint64 last_index = 3;
-    uint64 term = 4;
-    uint64 version = 5;
-    bool tombstone = 6;
-    bytes start_key = 7;
-    bytes end_key = 8;
+    uint64 commit_index = 4;
+    uint64 term = 5;
+    uint64 version = 6;
+    bool tombstone = 7;
+    bytes start_key = 8;
+    bytes end_key = 9;
 }
 
 message RecoveryCmdRequest {
@@ -31,17 +32,22 @@ message RecoveryCmdRequest {
     bool tombstone = 4; // set Peer to tombstoned
 }
 
+// ensure leader assign is OK
 message RecoveryCmdResponse {
-    bool done = 1;
+    uint64 region_id = 1;
+    bool Ok = 2;
 }
 
 // check if raft fsm applied index >= GetRaftStatusRequest.commit_index
 message GetRaftStatusRequest {
-    bool commit_index = 1;
+    uint64 region_id = 1;
+    // TODO: Maybe here is last_index
+    bool commit_index = 2;
 }
 
+// all peers aligned applied_index >= commit_index. 
 message GetRaftStatusResponse {
-    bool done = 1;
+    bool aligned = 1;
 }
 
 message ResolvedRequest {
@@ -52,9 +58,12 @@ message ResolvedResponse {
     bool done = 1;
 }
 service recovery {
-    // scan region meta
+    // scan region meta to ready region meta
     rpc ReadRegionMeta(ReadRegionMetaRequest) returns (stream ReadRegionMetaResponse) {}
+    // execute the recovery command
     rpc RecoveryCmd(stream RecoveryCmdRequest) returns (RecoveryCmdResponse) {}
+    // check raft status
     rpc CheckRaftStatus(GetRaftStatusRequest) returns (GetRaftStatusResponse) {}
+    // execute delete data from kv db
     rpc ResolvedKvData(ResolvedRequest) returns (ResolvedResponse) {}
 }
