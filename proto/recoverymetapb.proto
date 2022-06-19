@@ -1,5 +1,5 @@
 syntax = "proto3";
-package recovery;
+package recovery_meta;
 
 import "gogoproto/gogo.proto";
 import "rustproto.proto";
