@@ -39,7 +39,7 @@ message RecoveryCmdResponse {
     bool Ok = 2;
 }
 
-service recovery {
+service recovery_meta {
     // scan region meta to ready region meta
     rpc ReadRegionMeta(ReadRegionMetaRequest) returns (stream RegionMeta) {}
     // execute the recovery command
