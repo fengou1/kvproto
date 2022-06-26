@@ -14,7 +14,7 @@ option (rustproto.lite_runtime_all) = true;
 message GetRaftStatusRequest {
     uint64 region_id = 1;
     // TODO: Maybe here is last_index
-    bool commit_index = 2;
+    uint64 commit_index = 2;
 }
 
 // all peers aligned applied_index >= commit_index. 
@@ -22,16 +22,16 @@ message GetRaftStatusResponse {
     bool aligned = 1;
 }
 
-message ResolvedRequest {
+message ResolveRequest {
     uint64 resolved_ts = 1;
 }
 
-message ResolvedResponse {
+message ResolveResponse {
     bool done = 1;
 }
 service recovery {
     // check raft status
     rpc CheckRaftStatus(GetRaftStatusRequest) returns (GetRaftStatusResponse) {}
     // execute delete data from kv db
-    rpc ResolvedKvData(ResolvedRequest) returns (ResolvedResponse) {}
+    rpc ResolveKvData(ResolveRequest) returns (ResolveResponse) {}
 }
