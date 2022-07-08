@@ -1,5 +1,5 @@
 syntax = "proto3";
-package recovery;
+package recover_data;
 
 import "gogoproto/gogo.proto";
 import "rustproto.proto";
@@ -9,19 +9,6 @@ option (gogoproto.marshaler_all) = true;
 option (gogoproto.unmarshaler_all) = true;
 option (rustproto.lite_runtime_all) = true;
 
-
-// check if raft fsm applied index >= GetRaftStatusRequest.commit_index
-message GetRaftStatusRequest {
-    uint64 region_id = 1;
-    // TODO: Maybe here is last_index
-    uint64 commit_index = 2;
-}
-
-// all peers aligned applied_index >= commit_index. 
-message GetRaftStatusResponse {
-    bool aligned = 1;
-}
-
 message ResolveRequest {
     uint64 resolved_ts = 1;
 }
@@ -29,9 +16,7 @@ message ResolveRequest {
 message ResolveResponse {
     bool done = 1;
 }
-service recovery {
-    // check raft status
-    rpc CheckRaftStatus(GetRaftStatusRequest) returns (GetRaftStatusResponse) {}
+service recover_data {
     // execute delete data from kv db
     rpc ResolveKvData(ResolveRequest) returns (ResolveResponse) {}
 }
