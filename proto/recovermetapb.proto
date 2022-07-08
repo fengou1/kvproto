@@ -1,5 +1,5 @@
 syntax = "proto3";
-package recovery_meta;
+package recover_meta;
 
 import "gogoproto/gogo.proto";
 import "rustproto.proto";
@@ -15,7 +15,7 @@ message ReadRegionMetaRequest {
 
 message RegionMeta {
     uint64 region_id = 1;
-    uint64 applied_index = 2;
+    uint64 last_log_term = 2;
     uint64 last_index = 3;
     uint64 commit_index = 4;
     uint64 term = 5;
@@ -25,23 +25,23 @@ message RegionMeta {
     bytes end_key = 9;
 }
 
-message RecoveryCmdRequest {
+message RecoverCmdRequest {
     uint64 region_id = 1;
     uint64 term = 2; // set term
     bool as_leader = 3; // force region_id as leader
-    uint64 leader_commit_index = 4; // force region_id as leader, and the leader commit_index
-    bool tombstone = 5; // set Peer to tombstoned
+    bool tombstone = 4; // set Peer to tombstoned
+    bool exit_recovery = 5; // set command to exit the recovery meta service
 }
 
 // ensure leader assign is OK
-message RecoveryCmdResponse {
+message RecoverCmdResponse {
     uint64 region_id = 1;
     bool Ok = 2;
 }
 
-service recovery_meta {
+service recover_meta {
     // scan region meta to ready region meta
     rpc ReadRegionMeta(ReadRegionMetaRequest) returns (stream RegionMeta) {}
     // execute the recovery command
-    rpc RecoveryCmd(stream RecoveryCmdRequest) returns (RecoveryCmdResponse) {}
+    rpc RecoverCmd(stream RecoverCmdRequest) returns (RecoverCmdResponse) {}
 }
