@@ -24,22 +24,8 @@ message RegionMeta {
     bytes end_key = 8;
 }
 
-message RecoverCmdRequest {
-    uint64 region_id = 1;
-    uint64 term = 2; // set term
-    bool as_leader = 3; // force region_id as leader
-    bool tombstone = 4; // set Peer to tombstoned
-}
-
-// ensure leader assign is OK
-message RecoverCmdResponse {
-    uint64 store_id = 1;
-    bool Ok = 2;
-}
 
 service recover_meta {
     // scan region meta to ready region meta
     rpc ReadRegionMeta(ReadRegionMetaRequest) returns (stream RegionMeta) {}
-    // execute the recovery command
-    rpc RecoverCmd(stream RecoverCmdRequest) returns (RecoverCmdResponse) {}
 }
