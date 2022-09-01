@@ -42,6 +42,16 @@ message RecoverCmdResponse {
     uint64 store_id = 2;
 }
 
+// wait apply to last index
+message WaitApplyRequest {
+    uint64 store_id = 1;
+}
+
+message WaitApplyResponse {
+    Error error = 1;
+    uint64 store_id = 2;
+}
+
 // resolve data by resolved_ts
 message ResolveKvDataRequest {
     uint64 resolved_ts = 1;
@@ -61,6 +71,8 @@ service RecoverData {
     rpc ReadRegionMeta(ReadRegionMetaRequest) returns (stream RegionMeta) {}
     // execute the recovery command
     rpc RecoverCmd(stream RecoverCmdRequest) returns (RecoverCmdResponse) {}
+    // wait all region apply to last index
+    rpc WaitApply(WaitApplyRequest) returns (WaitApplyResponse) {}
     // execute delete data from kv db
     rpc ResolveKvData(ResolveKvDataRequest) returns (stream ResolveKvDataResponse) {}
 }
